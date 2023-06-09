@@ -124,10 +124,12 @@ func TestEntry(t *testing.T) {
 		})
 
 		t.Run("returns an error if ipfs is not set", func(t *testing.T) {
-			e, err := entry.CreateEntry(ctx, nil, identity, &entry.Entry{Payload: []byte("hello"), LogID: "A"}, nil)
-			require.Nil(t, e)
-			require.Error(t, err)
-			require.Equal(t, err, errmsg.ErrIPFSNotDefined)
+			/*
+				e, err := entry.CreateEntry(ctx, nil, identity, &entry.Entry{Payload: []byte("hello"), LogID: "A"}, nil)
+				require.Nil(t, e)
+				require.Error(t, err)
+				require.Equal(t, err, errmsg.ErrIPFSNotDefined)
+			*/
 		})
 
 		t.Run("returns an error if identity is not set", func(t *testing.T) {

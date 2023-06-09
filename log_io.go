@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	core_iface "github.com/ipfs/interface-go-ipfs-core"
+	core_iface "github.com/ipfs/boxo/coreiface"
 
 	"berty.tech/go-ipfs-log/iface"
 
@@ -86,10 +86,6 @@ func fromMultihash(ctx context.Context, services core_iface.CoreAPI, hash cid.Ci
 }
 
 func fromEntryHash(ctx context.Context, services core_iface.CoreAPI, hashes []cid.Cid, options *FetchOptions, io iface.IO) ([]iface.IPFSLogEntry, error) {
-	if services == nil {
-		return nil, errmsg.ErrIPFSNotDefined
-	}
-
 	if options == nil {
 		return nil, errmsg.ErrFetchOptionsNotDefined
 	}
@@ -125,10 +121,6 @@ func fromEntryHash(ctx context.Context, services core_iface.CoreAPI, hashes []ci
 }
 
 func fromJSON(ctx context.Context, services core_iface.CoreAPI, jsonLog *iface.JSONLog, options *iface.FetchOptions) (*Snapshot, error) {
-	if services == nil {
-		return nil, errmsg.ErrIPFSNotDefined
-	}
-
 	if options == nil {
 		return nil, errmsg.ErrFetchOptionsNotDefined
 	}
@@ -155,10 +147,6 @@ func fromJSON(ctx context.Context, services core_iface.CoreAPI, jsonLog *iface.J
 }
 
 func fromEntry(ctx context.Context, services core_iface.CoreAPI, sourceEntries []iface.IPFSLogEntry, options *iface.FetchOptions) (*Snapshot, error) {
-	if services == nil {
-		return nil, errmsg.ErrIPFSNotDefined
-	}
-
 	if options == nil {
 		return nil, errmsg.ErrFetchOptionsNotDefined
 	}

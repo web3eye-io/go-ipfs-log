@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
+	core_iface "github.com/ipfs/boxo/coreiface"
 	"github.com/ipfs/go-cid"
-	core_iface "github.com/ipfs/interface-go-ipfs-core"
 
 	"berty.tech/go-ipfs-log/accesscontroller"
 	"berty.tech/go-ipfs-log/entry"
@@ -101,10 +101,6 @@ func maxClockTimeForEntries(entries []iface.IPFSLogEntry, defValue int) int {
 // options.AccessController is an instance of accesscontroller.Interface,
 // which by default allows anyone to append to the IPFSLog.
 func NewLog(services core_iface.CoreAPI, identity *identityprovider.Identity, options *LogOptions) (*IPFSLog, error) {
-	if services == nil {
-		return nil, errmsg.ErrIPFSNotDefined
-	}
-
 	if identity == nil {
 		return nil, errmsg.ErrIdentityNotDefined
 	}
@@ -676,7 +672,7 @@ func (l *IPFSLog) ToString(payloadMapper func(iface.IPFSLogEntry) string) string
 		length := len(parents)
 		padding := strings.Repeat("  ", maxInt(length-1, 0))
 		if length > 0 {
-			padding = padding + "└─"
+			padding = padding + "Ã¢ÂÂÃ¢ÂÂ"
 		}
 
 		payload := ""
@@ -734,10 +730,6 @@ func (l *IPFSLog) ToMultihash(ctx context.Context) (cid.Cid, error) {
 //
 // Creating a log from a hash will retrieve entries from IPFS, thus causing side effects
 func NewFromMultihash(ctx context.Context, services core_iface.CoreAPI, identity *identityprovider.Identity, hash cid.Cid, logOptions *LogOptions, fetchOptions *FetchOptions) (*IPFSLog, error) {
-	if services == nil {
-		return nil, errmsg.ErrIPFSNotDefined
-	}
-
 	if identity == nil {
 		return nil, errmsg.ErrIdentityNotDefined
 	}
